@@ -1,0 +1,97 @@
+<html>
+<head>
+	<title>Classic Gunz Carregando...</title>
+	<link rel="stylesheet" href="{$tpl}Carregando/css/jquery.ui.all.css" />
+    <style type="text/css">
+        body {
+            background-color : black;            
+        }
+        
+        #corpo{
+            margin : 220px auto 0px auto;
+            width: 500px;
+        }
+        
+        .logo{
+            margin-left: 80px;
+        }
+        
+        #barra_de_progresso{
+            width: 500px;
+        }
+    </style>
+	<script src="{$tpl}Carregando/js/jquery-1.6.2.min.js"></script>
+	<script src="{$tpl}Carregando/js/jquery-ui-1.8.16.custom.min.js"></script>
+	<script>
+        var g_iCount = new Number();
+        var g_iCount = 0;
+        
+        function sleep(milliseconds) {
+        var start = new Date().getTime();
+            for (var i = 0; i < 1e7; i++) {
+                if ((new Date().getTime() - start) > milliseconds){
+                    break;
+                }
+            }
+        }
+        
+        function setCookie(c_name, value, minute) {
+            var exdate=new Date();
+            exdate.setDate(exdate.getDate() + ( minute / 0.9) );
+            var c_value=escape(value) + ((minute==null) ? "" : "; expires="+exdate.toUTCString());
+            document.cookie=c_name + "=" + c_value ;
+        }
+        
+        
+        function startCountdown(){
+            if((g_iCount + 1) <= 100){
+               g_iCount = g_iCount + 1;
+               var porc = g_iCount;
+               
+               $( "#barra_de_progresso" ).progressbar({
+					value: parseInt(porc)
+			   });
+                
+                
+                if( g_iCount == 12 ){
+                    sleep(3000);
+                }
+                
+                if( g_iCount == 27 ){
+                    sleep(3000);
+                }
+               	
+                if( g_iCount == 31 ){
+                    sleep(4000);
+                }
+                
+                if( g_iCount == 79 ){
+                    sleep(3000);
+                }
+               
+                if( g_iCount == 95 ){
+                    sleep(6000);
+                }
+                
+                if( g_iCount == 100 ){
+                    sleep(3000);
+                    setCookie( "classic", 1, 1 );
+                    window.location = "index.php?new";
+                }
+                
+               setTimeout('startCountdown()', 80 );
+               
+            }
+        }
+	</script>
+</head>
+<body onload="startCountdown();">
+
+<div id="corpo">
+    <div class="logo"><img src="{$tpl}Carregando/1_logo.png" /></div><br />
+    <div id="barra_de_progresso"></div>
+    <br />
+    <font style="font-size: 10px; color: darkorange;">&bull; Classic Gunz Anti D-Dos &copy; 2013 Criminal Team Web Developer's</font>
+</div>
+</body>
+</html>

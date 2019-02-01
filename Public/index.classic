@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <noscript>
+        <meta http-equiv="REFRESH" content="0;URL=Public/js_false.htm" />
+    </noscript>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta http-equiv="content-language" content="pt-br" />
+    <meta name="author" content="Geovane Souza" />
+    <meta name="robots" content="all" />
+    <meta name="rating" content="general" />
+    <meta name="DC.creator " content="Geovane Souza" />
+    
+	<head>
+		<meta name="description" content="Classic GunZ Home Page"/>
+		<title>
+			{$smarty.const.TITULO} {if isset($smarty.session.SUBTITULO)}&bull; {$smarty.session.SUBTITULO}{/if}
+		</title>
+		
+		<link rel="stylesheet" type="text/css" href="{$tpl}css/style.css"/>
+        <script type="text/javascript" src="{$tpl}js/jquery.js"></script>
+        <script type="text/javascript" src="{$tpl}js/jquery.validate.js"></script>
+        <script type="text/javascript" src="{$tpl}js/classicgunz.js"></script>
+	</head>
+	<body>
+		<div id="top">
+			<div id="top_content">
+                {if ! isset($smarty.session.classic)}
+				    <a href="#">Esqueceu sua senha?</a>
+				    <a href="index.php?url=login" class="login"></a>
+				    <a href="index.php?url=registro" class="register"></a>
+				{else}
+					<div style="font-size: 12px; margin: 10px 10px 0px 10px; color: #ff5a00; font-family: Khmer UI; text-shadow: #b45500 1px 0px 8px;">
+						Bem - Vindo "{$LogadoNome}" {$LogadoCash} 
+					</div>
+					<a href="#" style="margin-top: 27px;"> {$IndexTotalCarrinho} </a>
+                {/if}
+			</div>
+		</div>
+		<div id="container">
+			<div id="logo">
+			</div>
+			<div id="container_wrapper">
+				<div id="navbar">
+					<div id="mainmenu">
+						<ul>
+							<li class="active">
+								<a href="index.php">Inicio</a>
+							</li>
+                            {if ! isset($smarty.session.classic)}
+							<li>
+								<a href="index.php?url=registro">Registro</a>
+							</li>
+                            {/if}
+							<li>
+								<a href="#" id="a_download" class="download">Download</a>
+							</li>
+							<li>
+								<a href="{$smarty.const.FORUM_LINK}" target="_blank">Fórum</a>
+							</li>
+							<li>
+								<a href="index.php?url=ranking">Ranking</a>
+							</li>
+							<li>
+								<a href="index.php?url=store&tipo=todos">Game Store</a>
+							</li>
+							<li>
+								<a href="#">Galeria</a>
+							</li>
+							{if isset( $smarty.session.classic ) }
+							<li>
+								<a href="#" id="a_myaccount" class="myaccount">Minha conta</a>
+							</li>
+                            <li>
+								<a href="index.php?conta=deslogar">Sair</a>
+							</li>
+							{/if}
+						</ul>
+					</div>
+					<div id="submenu">
+						<ul class="tab_download" style="display:none;">
+                        {if isset( $Downloads ) }
+                            {foreach from=$Downloads key=mirros item=links}
+							<li>
+								<a href="{$links}" target="_blank">{$mirros}</a>
+							</li>
+                            {/foreach}
+                        {else}
+                            <li>
+								<a href="#">Nenhum download configurado!</a>
+							</li>
+						</ul>
+                    {/if}
+					</div>
+					<span class="status">
+						<span class="count">
+							( {$StatusServidor} )
+						</span>
+						{if $StatusServidor <= 1} jogador {else} jogadores {/if} online
+                    </span>
+							</div>
+							<div id="content_wrapper">
+								<div id="content-top">
+								</div>
+								<div id="content">
+									<div id="content-left">
+                                    <div style="margin-top: 21px;"></div>
+										<div id="ranking">
+											<div id="indranking">
+                                            <div class="classic_titulo" style="margin-left: 58px;">Individual Ranking</div>
+												<table>
+													{if isset( $PlayerContagem ) } {section name=individual loop=$PlayerContagem}
+													<tr>
+														<td class="rank">
+															{$PlayerContagem[individual]}
+														</td>
+														<td class="name">
+															<a href="index.php?url=viewer&tipo=individual&id={$PlayerID[individual]}">{$PlayerNome[individual]}</a>
+														</td>
+														<td>
+															Lv. {$PlayerLevel[individual]}
+														</td>
+													</tr>
+													{/section} {else}
+													<tr>
+														<td class="rank">
+															&nbsp;
+														</td>
+														<td class="name">
+															&bull;Nada encontrado&bull;
+														</td>
+														<td>
+															&nbsp;
+														</td>
+													</tr>
+													{/if}
+												</table>
+												<a href="index.php?url=ranking&tipo=individual" class="button" style="margin-left: 70px;">maximizar</a>
+											</div>
+											<div id="clanranking">
+                                            <div class="classic_titulo">Clan Ranking</div>
+												<table>
+													{if isset( $ClanContagem ) } {section name=clan loop=$ClanContagem}
+													<tr>
+														<td class="rank">
+															{$ClanContagem[clan]}
+														</td>
+														<td class="name">
+															<a href="index.php?url=viewer&tipo=clan&id={$ClanID[clan]}">{$ClanNome[clan]}</a>
+														</td>
+														<td>
+															{$ClanPontos[clan]} Pts.
+														</td>
+													</tr>
+													{/section} {else}
+													<tr>
+														<td class="rank">
+															&nbsp;
+														</td>
+														<td class="name">
+															&bull;Nada encontrado&bull;
+														</td>
+														<td>
+															&nbsp;
+														</td>
+													</tr>
+													{/if}
+												</table>
+												<a href="index.php?url=ranking&tipo=clan" class="button" style="margin-left: 70px;">maximizar</a>
+											</div>
+										</div>
+									</div>
+									<div id="content-center">
+                                    {if isset( $smarty.get.url ) && $smarty.get.url neq ""}
+                                        {include file=$get}
+                                    {else}
+										<div id="slider">
+											<ul>
+												<li class="slider1">
+													<a href="#" target="_blank"><img src="{$tpl}images/slider/1.jpg" width="523" height="133"/></a>
+												</li>
+												<li class="slider2">
+													<a href="#" target="_blank"><img src="{$tpl}images/slider/2.jpg" width="523" height="133"/></a>
+												</li>
+												<li class="slider3">
+													<a href="#"><img src="{$tpl}images/slider/3.jpg" width="523" height="133"/></a>
+												</li>
+												<li class="slider4">
+													<a href="#"><img src="{$tpl}images/slider/4.jpg" width="523" height="133"/></a>
+												</li>
+											</ul>
+											<div class="bullets">
+												<a href="#" onclick="return false;" class="bullet1"></a>
+												<a href="#" onclick="return false;" class="bullet2"></a>
+												<a href="#" onclick="return false;" class="bullet3"></a>
+												<a href="#" onclick="return false;" class="bullet4"></a>
+											</div>
+										</div>
+										{if isset( $TopNoticiaTitulo ) }
+										<div id="news">
+                                        <div class="classic_titulo" style="margin-left: 20px; margin-top: 20px; ">Noticias e atulizações</div>
+											<div id="news-items">
+												{section name=noticia loop=$TopNoticiaTitulo}
+												<div id="news-title">
+													<span class="date" style="font-size: 9px; margin-top: 2px;">
+														{$TopNoticiaData[noticia]}
+													</span>
+													<span class="title">
+														{$TopNoticiaTitulo[noticia]}
+													</span>
+													<a href="#" onclick="return false;" class="active" id="news{if $TopNoticiaCont[noticia] eq 1}2{/if}{if $TopNoticiaCont[noticia] eq 2}3{/if}{if $TopNoticiaCont[noticia] eq 3}1{/if}"></a>
+												</div>
+												<div style="height: 220px;" id="news-content" class="news{$TopNoticiaCont[noticia]}">
+													<p>
+														{$TopNoticiaTexto[noticia]}
+														<br />
+														<br />
+														{$TopNoticiaAutor[noticia]}
+														<br />
+														Equipe {$smarty.const.TITULO}
+													</p>
+												</div>
+												{/section}
+											</div>
+										</div>
+										{/if}
+                                        
+                                    {/if} 
+                                    
+                                    {if $smarty.const.SITEDEBUG == false}
+                                        
+										<div id="items">
+                                            <div class="classic_titulo" style="margin-left: 20px; margin-top: 20px; ">Últimos itens adicionados</div>
+											<a href="#" class="arrow-left" id="item-list1" onclick="return false;"></a>
+											<a href="#" class="arrow-right" id="item-list2" onclick="return false;"></a>
+											<ul class="item-list1">
+												<li class="tooltip" title="Cost: 200 Coins" onclick="window.location = '#'">
+													<img src="{$tpl}images/items/Gold%20Desert%20Eagles.png" width="92" height="92"/>
+													<div id="item-name">
+														<span class="name">
+															Gold Desert Eagles
+														</span>
+													</div>
+												</li>
+											</ul>
+											<ul class="item-list2">
+												<li class="tooltip" title="Cost: 100 Coins" onclick="window.location = 'item/Donation-Dagger.html'">
+													<img src="images/items/Donation%20Dagger.png" width="92" height="92"/>
+													<div id="item-name">
+														<span class="name">
+															Donation Dagger
+														</span>
+													</div>
+												</li>
+											</ul>
+											<ul class="item-list2">
+											</ul>
+										</div>
+                                        
+                                       {/if} 
+                                        
+									</div>
+                                   
+									<div id="content-right">
+                                         <br />
+										<div id="donate">
+                                        <div class="classic_titulo">Doações</div>
+											<a href="donate.html" class="button"></a>
+											<div class="links">
+												<a href="#">&raquo; Informações sobre doações</a>
+												<br/>
+												<a href="#">&raquo; Como doar e se tornar VIP?</a>
+											</div>
+										</div>
+										<div id="recent-activity">
+                                        <div class="classic_titulo" style="margin-left: 59px;">Informações</div>
+											<ul>
+												<li>
+													<span class="title">
+														Servidor :
+													</span>
+													<span class="content">
+														{$StatusServer}
+													</span>
+												</li>
+												<li>
+													<span class="title">
+														Recorde On - line :
+													</span>
+													<span class="content">
+														{$RecordeOnline}
+													</span>
+												</li>
+												<li>
+													<span class="title">
+														Total de contas :
+													</span>
+													<span class="content">
+														{$TodasAsContas}
+													</span>
+												</li>
+												<li>
+													<span class="title">
+														Total de clan :
+													</span>
+													<span class="content">
+														{$TodasOsClan}
+													</span>
+												</li>
+												<li>
+													<span class="title">
+														Total de character :
+													</span>
+													<span class="content">
+														{$TodasOsCharacter}
+													</span>
+												</li>
+											</ul>
+										</div>
+										<div id="recent-players">
+                                        <div class="classic_titulo" style="margin-left: 58px;">Ativos no site</div>
+											<p class="players">
+                                            {if isset( $NomesOnlineNoSite )}
+												{foreach from=$NomesOnlineNoSite item=OnlineNoSite}
+                                                    {$OnlineNoSite}
+                                                {/foreach}
+                                            {/if}
+											</p>
+											<p class="legend">
+												{$LegendaOnNoSite}
+											</p>
+										</div>
+									</div>
+								</div>
+								<div id="content-bottom">
+								</div>
+							</div>
+							</div>
+							<div id="footer">
+								<span class="left">
+									Copyright &copy;
+									<a href="#">{$smarty.const.TITULO}</a>
+									2013. Todos os direitos reservados.
+								</span>
+								<span class="right">
+									<a href="#">Politica de privacidade</a>
+									·
+									<a href="#">Fale conosco</a>
+									·
+									<a href="{$smarty.const.FORUM_LINK}" target="_blank">Fórum</a>
+									·
+									<a href="#">Sugestões</a>
+									·
+									<a href="#">Doações</a>
+									·
+									<a href="#">Ajuda</a>
+								</span>
+							</div>
+							</div>
+							</body>							
+							</html>

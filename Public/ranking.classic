@@ -1,0 +1,312 @@
+<div id="main">
+	<h1>
+		Ranking &raquo; {if !isset($smarty.get.tipo) || $smarty.get.tipo eq "individual"} individual {/if} {if isset($smarty.get.tipo) && $smarty.get.tipo eq "clan"} clan {/if}
+        {if isset($smarty.get.tipo) && $smarty.get.tipo eq "buscar"} buscar {/if}
+	</h1>
+	<div class="content">
+		<div class="menu">
+			<ul class="ranking">
+				<li>
+					{if !isset($smarty.get.tipo) || $smarty.get.tipo eq "individual" && $smarty.get.tipo neq "buscar" }
+					<a href="index.php?url=ranking&tipo=individual" class="active">
+					{else}    
+					<a href="index.php?url=ranking&tipo=individual">
+					{/if}
+					Individual Ranking</a>
+				</li>
+				<li>
+					<a>|</a>
+				</li>
+				<li>
+					{if isset($smarty.get.tipo) && $smarty.get.tipo eq "clan"}
+					<a href="index.php?url=ranking&tipo=clan" class="active">
+					{else}    
+					<a href="index.php?url=ranking&tipo=clan">
+					{/if}
+					Clan Ranking</a>
+				</li>
+			</ul>
+		</div>
+		<div class="contents" style="font-size: 8px;">
+			<div style="margin-top: -25px; text-align: center;">
+				<form method="get" name="buscar_form" id="buscar_form">
+					<input type="hidden" name="url" value="ranking" />
+					<input type="hidden" name="tipo" value="buscar" />
+					<select name="por">
+						<option>
+							Nome
+						</option>
+						<option>
+							ID
+						</option>
+					</select>
+					&nbsp;
+					<select name="option">
+						<option>
+							Char
+						</option>
+						<option>
+							Clan
+						</option>
+					</select>
+					&nbsp;
+					<input name="q" id="q" type="text" maxlength="20" required="true" autocomplete="false" />
+					<br />
+					<div style="float: right;  margin-right: 72px;">
+						<button class="button" type="submit">
+							Pesquisar
+						</button>
+					</div>
+				</form>
+			</div>
+			<br />
+			<br />
+			<br />
+			<br />
+			<hr style="color: darkorange; border-style: dashed;" />
+			<br />
+			<table>
+				{if !isset($smarty.get.tipo) || $smarty.get.tipo eq "individual" && $smarty.get.tipo neq "buscar" } {if ! isset( $RankingEmpty )}
+				<tr>
+					<td style="text-align: center;">
+						#
+					</td>
+					<td style="text-align: left;">
+						Nome
+					</td>
+					<td style="text-align: center;">
+						Level
+					</td>
+					<td style="text-align: center;">
+						Matou
+					</td>
+					<td style="text-align: center;">
+						Morreu
+					</td>
+					<td style="text-align: center;">
+						Exp
+					</td>
+					<td style="text-align: center;">
+						(%)
+					</td>
+				</tr>
+				{section name=ranking_p loop=$Ranking_Contagem}
+				<tr>
+					<td style="text-align: center; color: #f9f9f9;">
+						{$Ranking_Contagem[ranking_p]}
+					</td>
+					<td style="text-align: left;   color: #f9f9f9;">
+						<a href="index.php?url=viewer&tipo=individual&id={$Viewer_Id[ranking_p]}">{$RankingNome[ranking_p]}</a>
+					</td>
+					<td style="text-align: center; color: #f9f9f9;">
+						{$Level[ranking_p]}
+					</td>
+					<td style="text-align: center; color: #f9f9f9;">
+						{$Win[ranking_p]}
+					</td>
+					<td style="text-align: center; color: #f9f9f9;">
+						{$Looses[ranking_p]}
+					</td>
+					<td style="text-align: center; color: #f9f9f9;">
+						<font style="font-size: 10px;">
+							{$exp[ranking_p]}
+						</font>
+					</td>
+					<td style="text-align: left;   color: #f9f9f9;">
+						<font style="font-size: 10px;">
+							{$porcentagem[ranking_p]} %
+						</font>
+					</td>
+				</tr>
+				{/section} {else}
+				<center>
+					<font style="color: #f9f9f9; font-size: 12px;">
+						{$RankingEmpty}
+					</font>
+				</center>
+				{/if} {elseif $smarty.get.tipo eq "clan" && $smarty.get.tipo neq "buscar"} {if ! isset( $RankingEmpty ) }
+				<tr>
+					<td style="text-align: center;">
+						#
+					</td>
+					<td style="text-align: center;">
+						Nome
+					</td>
+					<td style="text-align: center;">
+						Pontos
+					</td>
+					<td style="text-align: center;">
+						Vitórias
+					</td>
+					<td style="text-align: center;">
+						Derrotas
+					</td>
+					<td style="text-align: center;">
+						Empates
+					</td>
+					<td style="text-align: center;">
+						(%)
+					</td>
+				</tr>
+				{section name=ranking_c loop=$Ranking_Contagem}
+				<tr>
+					<td style="text-align: center; color: #f9f9f9;">
+						{$Ranking_Contagem[ranking_c]}
+					</td>
+					<td style="text-align: left;   color: #f9f9f9;">
+						<a href="index.php?url=viewer&tipo=clan&id={$Viewer_Id[ranking_c]}">{$RankingNome[ranking_c]}</a>
+					</td>
+					<td style="text-align: center; color: #f9f9f9;">
+						{$Pontos[ranking_c]}
+					</td>
+					<td style="text-align: center; color: #f9f9f9;">
+						{$Win[ranking_c]}
+					</td>
+					<td style="text-align: center; color: #f9f9f9;">
+						{$Looses[ranking_c]}
+					</td>
+					<td style="text-align: center; color: #f9f9f9;">
+						{$empates[ranking_c]}
+					</td>
+					<td style="text-align: center; color: #f9f9f9;">
+						{$porcentagem[ranking_c]} %
+					</td>
+				</tr>
+				{/section} {else}
+				<center>
+					<font style="color: #f9f9f9; font-size: 12px;">
+						{$RankingEmpty}
+					</font>
+				</center>
+				{/if} {/if}
+				<center>
+					{if $smarty.get.tipo eq "buscar"} {if isset( $ErroBusca )}
+					<font color="#FFFFFF" size="2">
+						{$ErroBusca}
+					</font>
+					{else}
+					<font color="#FFFFFF" size="2">
+						{if isset($res_char_nome)}
+						<table>
+							<tr>
+								<td style="text-align: center;">
+									#
+								</td>
+								<td style="text-align: left;">
+									Nome
+								</td>
+								<td style="text-align: center;">
+									Level
+								</td>
+								<td style="text-align: center;">
+									Matou
+								</td>
+								<td style="text-align: center;">
+									Morreu
+								</td>
+								<td style="text-align: center;">
+									Exp
+								</td>
+								<td style="text-align: center;">
+									(%)
+								</td>
+							</tr>
+							{section name=bs loop=$res_char_nome}
+							<tr>
+								<td style="text-align: center; color: #f9f9f9;">
+									{$contagem_busca[bs]}
+								</td>
+								<td style="text-align: left; color: #f9f9f9;">
+									<a href="index.php?url=viewer&tipo=individual&id={$res_char_id[bs]}">{$res_char_nome[bs]}</a>
+								</td>
+								<td style="text-align: center; color: #f9f9f9;">
+									{$res_char_level[bs]}
+								</td>
+								<td style="text-align: center; color: #f9f9f9;">
+									{$res_char_matou[bs]}
+								</td>
+								<td style="text-align: center; color: #f9f9f9;">
+									{$res_char_morreu[bs]}
+								</td>
+								<td style="text-align: center; color: #f9f9f9;">
+									{$res_char_xp[bs]}
+								</td>
+								<td style="text-align: center; color: #f9f9f9;">
+									{$res_char_porcent[bs]}%
+								</td>
+							</tr>
+							{/section}
+						</table>
+						{/if} {if isset($res_clan_nome)}
+						<table>
+							<tr>
+								<td style="text-align: center;">
+									#
+								</td>
+								<td style="text-align: center;">
+									Nome
+								</td>
+								<td style="text-align: center;">
+									Pontos
+								</td>
+								<td style="text-align: center;">
+									Vitórias
+								</td>
+								<td style="text-align: center;">
+									Derrotas
+								</td>
+								<td style="text-align: center;">
+									Empates
+								</td>
+								<td style="text-align: center;">
+									(%)
+								</td>
+							</tr>
+							{section name=bd loop=$res_clan_nome}
+							<tr>
+								<td style="text-align: center; color: #f9f9f9;">
+									{$contagem_busca[bd]}
+								</td>
+								<td style="text-align: center; color: #f9f9f9;">
+									<a href="index.php?url=viewer&tipo=clan&id={$res_clan_id[bd]}">{$res_clan_nome[bd]}</a>
+								</td>
+								<td style="text-align: center; color: #f9f9f9;">
+									{$res_clan_pontos[bd]}
+								</td>
+								<td style="text-align: center; color: #f9f9f9;">
+								    {$res_clan_vitorias[bd]}
+								</td>
+								<td style="text-align: center; color: #f9f9f9;">
+									{$res_clan_derrotas[bd]}
+								</td>
+								<td style="text-align: center; color: #f9f9f9;">
+									{$res_clan_empates[bd]}
+								</td>
+								<td style="text-align: center; color: #f9f9f9;">
+									{$res_clan_porcent[bd]}%
+								</td>
+							</tr>
+							{/section}
+						</table>
+						{/if}
+					</font>
+					{/if} {/if}
+				</center>
+			</table>
+			<br />
+			<center>
+				<span class="ignore" style="font-size: 12px;">
+					{if isset( $Paginas_Paginacao )} {$Paginas_Paginacao} {/if}
+				</span>
+				<br/>
+				<br />
+				<font style="color: #FFFFFF; font-size: 10px;">
+					{if isset( $TotalEncontrado )} {$TotalEncontrado} Resutados encontrados {/if}
+				</font>
+			</center>
+		</div>
+		<br/>
+	</div>
+	<div class="footer">
+	</div>
+</div>

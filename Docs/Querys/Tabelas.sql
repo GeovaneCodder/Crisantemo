@@ -1,0 +1,5 @@
+ALTER TABLE [Account] ADD IP VARCHAR(80) NULL;
+ALTER TABLE [Account] ADD PerguntaSecreta VARCHAR(120) NULL;
+ALTER TABLE [Account] ADD RespostaSecreta VARCHAR(50) NULL;
+ALTER TABLE [Account] ADD DataDeNascimento VARCHAR(20) NULL;
+ALTER TABLE [Account] ADD Cash INT NULL;

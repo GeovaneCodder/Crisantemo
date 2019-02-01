@@ -1,0 +1,186 @@
+<div id="main">
+	<h1>
+		Registro
+	</h1>
+	<div class="content">
+		<div class="contents">
+			<p>
+            
+            {if ! isset( $smarty.get.verificar )}
+				<form name="reg_form" id="reg_form" action="#" method="post">
+					<table>           
+                    
+                        {if isset( $smarty.session.reg_erro ) && $smarty.session.reg_erro != "" }
+                        <tr>
+							<td style="width: 150px; height: 90px;"></td>
+							<td>
+                            
+								<p class="notify" style="margin-left: -155px; width: 420px; text-align: left; position: absolute;"> {$smarty.session.reg_erro}</p>
+							</td>
+						</tr>
+                        {/if}    
+                            
+                             
+                        <tr>
+							<td style="width: 150px;"></td>
+							<td>
+								&bull; Informações pessoais<br />
+                                <hr style="border-style: dashed;" />
+							</td>
+						</tr>
+						<tr>
+							<td style="width: 100px;">
+								Nome :
+							</td>
+							<td>
+								<input autofocus="" type="text" name="reg_nome" id="reg_nome" autocomplete="off"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								E-mail :
+							</td>
+							<td>
+								<input type="email" name="reg_email_1" id="reg_email_1" autocomplete="off"/>
+							</td>
+						</tr>
+                        <tr>
+							<td>
+								Re E-mail :
+							</td>
+							<td>
+								<input type="email" name="reg_email_2" id="reg_email_2" autocomplete="off"/>
+							</td>
+						</tr>
+                        <tr style="height: 60px;">
+							<td>
+								Data de nascimento :
+							</td>
+							<td>
+								<select name="reg_dia_nas" id="reg_dia_nas">
+                                    <option style="color: orange;" value="" disabled="true" selected="true">Dia</option>
+                                    {foreach from=$dias_reg item=dias}                                    
+                                        <option value="{$dias}">{$dias}</option>
+                                    {/foreach}
+                                </select>
+                               	<select name="reg_mes_nas" id="reg_mes_nas">
+                                    <option style="color: orange;" value="" disabled="true" selected="true">Mês</option>
+                                    {foreach from=$meses_reg key=int item=var}
+                                        <option value="{$int}">{$var}</option>
+                                    {/foreach}
+                                </select>
+                               	<select name="reg_ano_nas" id="reg_ano_nas">
+                                    <option style="color: orange;" value="" disabled="true" selected="true">Ano</option>
+                                    {foreach from=$anos_reg item=anos}
+                                        <option value="{$anos}">{$anos}</option>
+                                    {/foreach}
+                                    
+                                </select>
+							</td>
+						</tr>
+                        <tr>
+							<td style="width: 150px;"></td>
+							<td>
+								&bull; Informações do jogo<br />
+                                <hr style="border-style: dashed;" />
+							</td>
+						</tr>
+                        <tr>
+							<td>
+								UserID( <sup style="font-size: 8px;">Login</sup> ) :
+							</td>
+							<td>
+								<input type="text" name="reg_userid" id="reg_userid" autocomplete="off" />
+							</td>
+						</tr>
+                        <tr>
+							<td>
+								Senha :
+							</td>
+							<td>
+								<input type="password" name="reg_senha_1" id="reg_senha_1" autocomplete="off"/>
+							</td>
+						</tr>
+                        <tr style="height: 60px;">
+							<td>
+								Re Senha :
+							</td>
+							<td>
+								<input type="password" name="reg_senha_2" id="reg_senha_2" autocomplete="off"/>
+							</td>
+						</tr>
+                        <tr>
+							<td style="width: 150px;"></td>
+							<td>
+								&bull; Outras informações<br />
+                                <hr style="border-style: dashed;" />
+							</td>
+						</tr>
+                        <tr>
+							<td>
+								Pergunta secreta :
+							</td>
+							<td>
+                                <select style="width: 210px;" id="reg_peg_sec" name="reg_peg_sec">
+                                    {foreach from=$perguntas_reg item=perguntas}
+								        <option value="{$perguntas}" >{$perguntas}</option>
+                                    {/foreach}
+                                </select>
+							</td>
+						</tr>
+                        <tr>
+							<td>
+								Reposta secreta :
+							</td>
+							<td>
+								<input id="reg_res_sec" name="reg_res_sec" type="text" value="" autocomplete="off"/>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+							</td>
+							<td>
+                                <img src="{$Codigo_Capatcha}" />
+							</td>
+						</tr>
+                        <tr>
+							<td>
+								Insira o c&oacute;digo acima :
+							</td>
+							<td>
+								<input id="reg_codigo" name="reg_codigo" type="text" value="" autocomplete="off"/>
+							</td>
+						</tr>
+                        
+                        <tr>
+							<td>
+                                <input type="hidden" name="classicgunz_reg" value="classicgunz_reg" /> 
+							</td>
+							<td>
+								<button type="reset" class="button">Limpar</button> <button type="submit" class="button">Finalizar</button>
+							</td>
+						</tr>
+                        
+					</table>
+				</form>
+                 
+							
+                {else}
+                    <table>
+                        <tr>
+                            <td></td>
+							<td>
+								<p class="notify" style="width: 420px; text-align: left; position: absolute;"> {if isset( $smarty.session.reg_fim )} {$smarty.session.reg_fim} <br />{/if}</p>
+							</td>
+						</tr>
+                    </table>
+                    
+                {/if}
+			</p>
+		</div>
+		<br />
+	</div>
+	<div class="footer">
+	</div>
+</div>

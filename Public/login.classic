@@ -1,0 +1,69 @@
+<div id="main">
+	<h1>
+		Login
+	</h1>
+	<div class="content">
+		<div class="contents">
+			<p>
+				<form id="form_login" method="post" action="#">
+					<table>
+                    
+                    {if isset( $smarty.session.login_err ) }
+						<tr height="60">
+							<td>
+							</td>
+							<td>
+								<p class="notify" style="margin-left: -210px; width: 465px; text-align: center; position: absolute;">
+									{$smarty.session.login_err}
+								</p>
+							</td>
+						</tr>
+                     {/if}   
+                        
+						<tr>
+							<td style="width: 150px;">
+							</td>
+							<td>
+								&bull; Formulário de autenticação
+								<br />
+								<hr style="border-style: dashed;" />
+							</td>
+						</tr>
+						<tr>
+							<td style="width: 100px;">
+								Chave de acesso :
+							</td>
+							<td>
+								<input autofocus="" placeholder="Userid ou Email..." type="text" name="login_chave" id="login_chave" autocomplete="off"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Senha :
+							</td>
+							<td>
+								<input placeholder="Senha..." type="password" name="login_senha" id="login_senha" autocomplete="off"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="hidden" name="classicgunz_login" value="classicgunz_login" />
+							</td>
+							<td>
+								<button type="reset" class="button">
+									Limpar
+								</button>
+								<button type="submit" class="button">
+									Logar
+								</button>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</p>
+		</div>
+		<br />
+	</div>
+	<div class="footer">
+	</div>
+</div>

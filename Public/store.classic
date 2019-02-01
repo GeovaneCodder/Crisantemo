@@ -1,0 +1,408 @@
+{if ! isset( $smarty.get.item ) }
+<div id="main">
+  <h1>
+    Web Store
+  </h1>
+  <div class="content">
+    <div class="menu">
+      <ul class="itemshop">
+        <li>
+          <a href="index.php?url=store&tipo=todos{if isset( $smarty.get.ordernar )}&ordernar={$smarty.get.ordernar}{/if}{if isset( $smarty.get.valores )}&valores={$smarty.get.valores}{/if}" {if ! isset($smarty.get.tipo) or $smarty.get.tipo eq "todos"} class="active" {/if} >Todos Itens</a>
+        </li>
+        <li>
+          {if isset( $smarty.get.tipo ) }
+            {if $smarty.get.tipo eq "cabeca" or $smarty.get.tipo eq "corpo" or $smarty.get.tipo eq "calcas" or $smarty.get.tipo eq "maos" or $smarty.get.tipo eq "pes"}  
+                <a href="#" id="armor" class="active" >Roupas</a>
+            {else}
+                <a href="#" id="armor">Roupas</a>
+            {/if}
+          {/if}
+        </li>
+        <li>
+            {if isset( $smarty.get.tipo ) }
+                {if $smarty.get.tipo eq "espadas" or $smarty.get.tipo eq "adagas"}
+                    <a href="#" id="melee-weapons" class="active">Curta Distâcia</a>
+                {else}
+                    <a href="#" id="melee-weapons">Curta Distâcia</a>
+                {/if}
+          {/if}
+        </li>
+        <li>
+            {if isset( $smarty.get.tipo ) }
+                {if $smarty.get.tipo eq "shotgun" or $smarty.get.tipo eq "bazucas" or $smarty.get.tipo eq "pistolas-revolvers" or $smarty.get.tipo eq "rifles" or $smarty.get.tipo eq "snipes"}
+                    <a href="#" id="ranged-weapons" class="active">Longa Distância</a>
+                {else}
+                    <a href="#" id="ranged-weapons">Longa Distância</a>
+                {/if}
+          {/if}
+        </li>
+        <li>
+          <a href="index.php?url=store&tipo=meds{if isset( $smarty.get.ordernar )}&ordernar={$smarty.get.ordernar}{/if}{if isset( $smarty.get.valores )}&valores={$smarty.get.valores}{/if}" {if isset($smarty.get.tipo) && $smarty.get.tipo eq "meds"} class="active" {/if} >Med's</a>
+        </li>
+        <li>
+          <a href="index.php?url=store&tipo=aneis{if isset( $smarty.get.ordernar )}&ordernar={$smarty.get.ordernar}{/if}{if isset( $smarty.get.valores )}&valores={$smarty.get.valores}{/if}" {if isset($smarty.get.tipo) && $smarty.get.tipo eq "aneis"} class="active" {/if} >Anéis</a>
+        </li>
+      </ul>
+    </div>
+    <div class="submenu">
+    {if isset( $smarty.get.tipo ) }
+        {if $smarty.get.tipo eq "cabeca" or $smarty.get.tipo eq "corpo" or $smarty.get.tipo eq "calcas" or $smarty.get.tipo eq "maos" or $smarty.get.tipo eq "pes"}
+            <ul class="shop_armor">
+        {else}
+            <ul class="shop_armor" style="display:none;">
+        {/if}
+    {/if}
+        <li>
+          <a href="index.php?url=store&tipo=cabeca{if isset( $smarty.get.ordernar )}&ordernar={$smarty.get.ordernar}{/if}{if isset( $smarty.get.valores )}&valores={$smarty.get.valores}{/if}" {if isset($smarty.get.tipo) && $smarty.get.tipo eq "cabeca"} class="active" {/if} >Cabeça</a>
+        </li>
+        <li>
+          <a href="index.php?url=store&tipo=corpo{if isset( $smarty.get.ordernar )}&ordernar={$smarty.get.ordernar}{/if}{if isset( $smarty.get.valores )}&valores={$smarty.get.valores}{/if}" {if isset($smarty.get.tipo) && $smarty.get.tipo eq "corpo"} class="active" {/if} >Corpo</a>
+        </li>
+        <li>
+          <a href="index.php?url=store&tipo=calcas{if isset( $smarty.get.ordernar )}&ordernar={$smarty.get.ordernar}{/if}{if isset( $smarty.get.valores )}&valores={$smarty.get.valores}{/if}" {if isset($smarty.get.tipo) && $smarty.get.tipo eq "calcas"} class="active" {/if} >Calças</a>
+        </li>
+        <li>
+          <a href="index.php?url=store&tipo=maos{if isset( $smarty.get.ordernar )}&ordernar={$smarty.get.ordernar}{/if}{if isset( $smarty.get.valores )}&valores={$smarty.get.valores}{/if}" {if isset($smarty.get.tipo) && $smarty.get.tipo eq "maos"} class="active" {/if} >Mãos</a>
+        </li>
+        <li>
+          <a href="index.php?url=store&tipo=pes{if isset( $smarty.get.ordernar )}&ordernar={$smarty.get.ordernar}{/if}{if isset( $smarty.get.valores )}&valores={$smarty.get.valores}{/if}" {if isset($smarty.get.tipo) && $smarty.get.tipo eq "pes"} class="active" {/if} >Pés</a>
+        </li>
+      </ul>
+      
+      {if isset( $smarty.get.tipo ) }
+        {if $smarty.get.tipo eq "espadas" or $smarty.get.tipo eq "adagas"}
+            <ul class="shop_melee-weapons">
+        {else}
+            <ul class="shop_melee-weapons" style="display:none;">
+        {/if}      
+      {/if}
+        <li>
+          <a href="index.php?url=store&tipo=espadas{if isset( $smarty.get.ordernar )}&ordernar={$smarty.get.ordernar}{/if}{if isset( $smarty.get.valores )}&valores={$smarty.get.valores}{/if}" {if isset($smarty.get.tipo) && $smarty.get.tipo eq "espadas"} class="active" {/if} >Espadas</a>
+        </li>
+        <li>
+          <a href="index.php?url=store&tipo=adagas{if isset( $smarty.get.ordernar )}&ordernar={$smarty.get.ordernar}{/if}{if isset( $smarty.get.valores )}&valores={$smarty.get.valores}{/if}" {if isset($smarty.get.tipo) && $smarty.get.tipo eq "adagas"} class="active" {/if} >Adagas</a>
+        </li>
+      </ul>
+      
+      {if isset( $smarty.get.tipo ) }
+            {if $smarty.get.tipo eq "shotgun" or $smarty.get.tipo eq "bazucas" or $smarty.get.tipo eq "pistolas-revolvers" or $smarty.get.tipo eq "rifles" or $smarty.get.tipo eq "snipes"}
+                <ul class="shop_ranged-weapons">
+            {else}
+                <ul class="shop_ranged-weapons" style="display:none;">
+            {/if}
+      {/if}
+      
+        <li>
+          <a href="index.php?url=store&tipo=shotgun{if isset( $smarty.get.ordernar )}&ordernar={$smarty.get.ordernar}{/if}{if isset( $smarty.get.valores )}&valores={$smarty.get.valores}{/if}" {if isset($smarty.get.tipo) && $smarty.get.tipo eq "shotgun"} class="active" {/if} >Shotgun ( 12 )</a>
+        </li>
+        <li>
+          <a href="index.php?url=store&tipo=bazucas{if isset( $smarty.get.ordernar )}&ordernar={$smarty.get.ordernar}{/if}{if isset( $smarty.get.valores )}&valores={$smarty.get.valores}{/if}" {if isset($smarty.get.tipo) && $smarty.get.tipo eq "bazucas"} class="active" {/if} >Bazucas</a>
+        </li>
+        <li>
+          <a href="index.php?url=store&tipo=pistolas-revolvers{if isset( $smarty.get.ordernar )}&ordernar={$smarty.get.ordernar}{/if}{if isset( $smarty.get.valores )}&valores={$smarty.get.valores}{/if}" {if isset($smarty.get.tipo) && $smarty.get.tipo eq "pistolas-revolvers"} class="active" {/if} >Pistolas / Revolver's</a>
+        </li>
+        <li>
+          <a href="index.php?url=store&tipo=rifles{if isset( $smarty.get.ordernar )}&ordernar={$smarty.get.ordernar}{/if}{if isset( $smarty.get.valores )}&valores={$smarty.get.valores}{/if}" {if isset($smarty.get.tipo) && $smarty.get.tipo eq "rifles"} class="active" {/if} >Rifle's</a>
+        </li>
+        <li>
+          <a href="index.php?url=store&tipo=snipes{if isset( $smarty.get.ordernar )}&ordernar={$smarty.get.ordernar}{/if}{if isset( $smarty.get.valores )}&valores={$smarty.get.valores}{/if}" {if isset($smarty.get.tipo) && $smarty.get.tipo eq "snipes"} class="active" {/if} >Sniper's</a>
+        </li>
+      </ul>
+    </div>
+    <div class="contents">
+    <div style="color: gray;">
+    
+        <table>
+            <tr>
+                <td width="290">
+                    <form method="get" action="#" >
+        <input type="hidden" name="url" value="store" />
+        {if isset( $smarty.get.tipo )}
+            <input type="hidden" name="tipo" value="{$smarty.get.tipo}" />
+        {else}
+            <input type="hidden" name="tipo" value="todos" />
+        {/if}
+        
+        {if isset( $smarty.get.sexo )}
+            <input type="hidden" name="sexo" value="{$smarty.get.sexo}" />
+        {/if}
+        
+        Exibir :
+        <select name="ordernar">
+            <option value="preco" {if isset( $smarty.get.ordernar ) && $smarty.get.ordernar eq "preco"} selected="true" disabled="true" {/if} >Preço</option>
+            <option value="level" {if isset( $smarty.get.ordernar ) && $smarty.get.ordernar eq "level"} selected="true" disabled="true" {/if} >Level</option>
+            <option value="damage" {if isset( $smarty.get.ordernar ) && $smarty.get.ordernar eq "damage"} selected="true" disabled="true" {/if} >Damage</option>
+            <option value="ap" {if isset( $smarty.get.ordernar ) && $smarty.get.ordernar eq "ap"} selected="true" disabled="true" {/if} >Ap</option>
+            <option value="hp" {if isset( $smarty.get.ordernar ) && $smarty.get.ordernar eq "hp"} selected="true" disabled="true" {/if} >Hp</option>
+        </select>
+        <select name="valores">
+             <option value="crescente" {if isset( $smarty.get.valores ) && $smarty.get.valores eq "crescente"} selected="true" disabled="true" {/if} >Crescente</option>
+             <option value="decrescente" {if isset( $smarty.get.valores ) && $smarty.get.valores eq "decrescente"} selected="true" disabled="true" {/if} >Decrescente</option>
+        </select>
+        <button class="button" type="submit">Filtrar</button>           
+        </form>
+                </td>
+            
+                <td valign="left" width="160">
+                <form method="get" action="#" >
+        <input type="hidden" name="url" value="store" />
+        {if isset( $smarty.get.tipo )}
+            <input type="hidden" name="tipo" value="{$smarty.get.tipo}" />
+        {else}
+            <input type="hidden" name="tipo" value="todos" />
+        {/if}
+        
+        {if isset( $smarty.get.ordernar )}
+            <input type="hidden" name="ordernar" value="{$smarty.get.ordernar}" />
+        {/if}
+        
+        {if isset( $smarty.get.valores )}
+            <input type="hidden" name="valores" value="{$smarty.get.ordernar}" />
+        {/if}
+            
+        <select name="sexo">
+            <option value="unissex" {if !isset( $smarty.get.sexo )} selected="true" {/if} disabled="true">- Sexo -</option>
+            <option value="unissex" {if isset( $smarty.get.sexo ) && $smarty.get.sexo eq "unissex"} selected="true" {/if} >Unissex</option>
+            <option value="masculino" {if isset( $smarty.get.sexo ) && $smarty.get.sexo eq "masculino"} selected="true" {/if} >Masculino</option>
+            <option value="feminino" {if isset( $smarty.get.sexo ) && $smarty.get.sexo eq "feminino"} selected="true" {/if} >Feminino</option>
+        </select>
+        <button class="button" type="submit">Filtrar</button>
+        </form>
+                </td>
+            </tr>
+        </table>
+        
+        
+        
+                
+    </div>
+    <br />
+    
+            
+      <ul class="items">
+      {if isset($itens_nomes) && ! isset($res_nulo) }
+        {section name=store loop=$itens_nomes}
+        <li class="tooltip" onclick="window.location = 'index.php?url=store&item={$itens_nomes[store]}'" title="{$itens_preco[store]} Cash">
+          <img src="{$tpl}images/WebStore/{$itens_imagem[store]}" width="92" height="92" />
+          <div id="item-name">
+            <span class="name">
+              {$itens_nomes[store]}
+            </span>
+          </div>
+          </li>
+        {/section}  
+      {/if}
+      </ul>
+      
+      {if isset($res_nulo)} 
+        <div style="text-align: center; width: 350px; color: #fff; border: darkorange 1px solid; padding: 5px; border-radius:5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;">
+            <font style="color: #FFFFFF">
+                {$res_nulo}
+            </font>
+        </div>            
+      {/if}
+      
+               
+                   
+          <div style="clear:both;">
+          </div>
+      {if isset( $Paginas_Paginacao )}
+      <br />
+      <div style="color: #ffffff; text-align: center; font-size: 10px;">        
+            {$Paginas_Paginacao}
+      </div><br />              
+      {/if}
+	  {if isset($smarty.session.classic)}	
+		<div style="text-align: center; border-top: 1px dashed #404040; ">
+			<br />
+			<button class="button" onclick="location.href='index.php?url=carrinho';">Finalizar compras / Editar carrinho</button>
+		</div>
+	  {/if}
+	  
+          </div>
+          <br />
+          </div>
+          <div class="footer">
+          </div>
+		  
+          </div>
+          {else}
+          <div id="main">
+            <h1>
+              Item
+            </h1>
+            <div class="content">
+              <div class="contents">
+                <div class="itemview">
+                  <div class="left">
+                    <img src="{$tpl}images/WebStore/set.png" width="92" height="92"/>
+                    <br/>
+                    {if ! isset( $smarty.session.classic )}
+                    <a href="index.php?url=login&redir=index.php%3Furl%3Dstore%26item%3D{$smarty.get.item}" class="button" title="Logar-se para comprar">Login</a>
+                    {else}
+						<div style="display: none;" name="item_id" id="item_id">{$Item_Identificacao}</div>
+						<div style="display: none;" name="user" id="user">{$smarty.session.classic}</div>
+						<button class="button" id="adicionarcarrinho" name="adicionarcarrinho" title="Adicionar ao carrinho de compras" >Adc. ao carrinho</button>
+						
+						<br />
+						
+						<select id="item_total" name="item_total" style="margin-top: 6px; margin-left: 8px;">
+							<option selected="true" disabled="true" value="0" >Quatidade</option>
+							{for $i=1 to 5}
+								<option value="{$i}">{$i}</option>
+							{/for}
+						</select>
+                    {/if}
+                  </div>
+                  <div class="left" style="float: right; {if ! isset( $smarty.session.classic )} margin-top: -130px; {else} margin-top: -160px; {/if}">
+                    <h2>
+                      {$ItemNome}
+                    </h2>
+                    <table style="float: right;">
+                      <tr height="15">
+                      </tr>
+                      <tr>
+                        <td style="color: gray;">
+                          Tipo :
+                        </td>
+                        <td style="color: gray;">
+                          {$ItemTipo}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color: gray;">
+                          Sexo :
+                        </td>
+                        <td style="color: gray;">
+                          {$ItemSexo}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color: gray;">
+                          Level :
+                        </td>
+                        <td style="color: gray;">
+                          {$ItemLevel}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color: gray;">
+                          Peso :
+                        </td>
+                        <td style="color: gray;">
+                          {$ItemPeso}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color: gray;">
+                          Preço :
+                        </td>
+                        <td style="color: gray;">
+                          {$ItemCash} Cash
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="stats" style="clear:both;">
+                    <h3>
+                      &bull; {$ItemDesc}
+                    </h3>
+                    <table>
+                      <tr>
+                        <td class="type">
+                          Damage
+                        </td>
+                        <td class="val">
+                          {$ItemDamage}
+                        </td>
+                        <td class="type">
+                          HP
+                        </td>
+                        <td class="val">
+                          {$ItemHP}
+                        </td>
+                        <td class="type">
+                          FR
+                        </td>
+                        <td class="val">
+                          0
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="type">
+                          Atraso
+                        </td>
+                        <td class="val">
+                          {$ItemAtrazo}
+                        </td>
+                        <td class="type">
+                          AP
+                        </td>
+                        <td class="val">
+                          {$ItemAP}
+                        </td>
+                        <td class="type">
+                          CR
+                        </td>
+                        <td class="val">
+                          0
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="type">
+                          Magazine
+                        </td>
+                        <td class="val">
+                          {$ItemBalas}
+                        </td>
+                        <td class="type">
+                          Max Weight
+                        </td>
+                        <td class="val">
+                          +0
+                        </td>
+                        <td class="type">
+                          PR
+                        </td>
+                        <td class="val">
+                          0
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="type">
+                          Max Bullet
+                        </td>
+                        <td class="val">
+                          {$ItemBullent}
+                        </td>
+                        <td class="type">
+                          Reload Time
+                        </td>
+                        <td class="val">
+                          0
+                        </td>
+                        <td class="type">
+                          LR
+                        </td>
+                        <td class="val">
+                          0
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+				  <div style="text-align: center; border-top: 1px dashed #404040; "><br />
+					<button class="button" onclick="history.back(1);">Voltar as compras</button>
+					<button class="button" onclick="location.href='index.php?url=carrinho';">Finalizar compras / Editar carrinho</button>
+					<br /><br />
+				  </div>
+                </div>
+                <div style="clear:both;">
+                </div>
+                <br/>
+              </div>
+              <br/>
+            </div>
+            <div class="footer">
+            </div>
+          </div>
+          {/if}

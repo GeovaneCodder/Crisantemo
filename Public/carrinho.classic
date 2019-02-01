@@ -1,0 +1,108 @@
+<style type="text/css">
+#carrinho{
+	margin: -5px 0px 0px 0px;
+	border: 1px solid #722d02;
+	width: 480px;
+	font-family: Trebuchet MS;
+	font-size: 12px;
+}
+
+#carrinho table{
+	margin-left: 0px;
+}
+
+#carrinho table tr td{
+	text-align: left;
+	height: 20px;
+	border: 1px;
+	text-align: center;
+	padding-top: 6px;
+}
+
+.redond {
+	cursor: pointer;
+	border: 1px solid #722d02;;
+	border-radius: 9px;
+	-o-border-radius: 9px;
+	-icab-border-radius: 9px;
+	-khtml-border-radius: 9px;
+	-moz-border-radius: 9px;
+	-webkit-border-radius: 9px;
+	padding-right: 1px;
+}
+
+.redond:hover{
+	color: #FFFFFF;
+	border-color: #FFFFFF;
+	
+}
+
+
+.nomes{
+	color: #4F4F4F;
+}
+
+.nomes:hover{
+	font-weight: bold;
+	color: #FFFFFF;
+	cursor: pointer;
+}
+
+</style>
+
+<div id="main">
+	<h1>
+		Carrinho de compras
+	</h1>
+	<div class="content">
+		<div class="contents">
+			<p>
+				{if !isset($smarty.get.sub)}
+					{if isset($resultado_zero)}
+						<div style="margin: 50px auto 150px auto; text-align: center; color: #f9f9f9;">
+							{$resultado_zero}
+						</div>
+					{else}
+						<div id="carrinho">
+						
+							<table>
+								<tr>
+									<td bgcolor="#1C1C1C" style="width: 180px;"><font color="#FFFFF">Nome</font></td>
+									<td bgcolor="#1C1C1C" style="width: 250px;">&nbsp;</td>
+									<td bgcolor="#1C1C1C" ><font color="#FFFFF">Quantidade</font></td>
+									<td bgcolor="#1C1C1C" style="width: 120px;"><font color="#FFFFF">Preço</font></td>
+									<td bgcolor="#1C1C1C" style="width: 30px;"></td>
+								</tr>
+						
+							{section name=it loop=$lista_nome}
+								
+								<tr>
+									<td><div class="nomes">{$lista_nome[it]}</div></td>
+									<td>&nbsp;</td>
+									<td><font color="#4F4F4F">"{$listar_qtd[it]}" itens</font></td>
+									<td><font color="#4F4F4F">"{$listar_preco[it]}" cash</font></td>
+									<td><div class="redond" title="Apagar item">x</div></td>
+								</tr>
+								  
+							{/section}
+							</table>
+							
+							<br />
+							<br />
+								<div style="border: 1px solid #722d02;"></div>
+								<br />
+								<center>
+									<button class="button">Limpar carrinho</button>
+									<button class="button">Finalizar compras</button>
+								</center>
+							<br />
+						</div>
+					{/if}
+				{/if}
+			</p>
+		</div>
+		<br />
+	</div>
+	<div class="footer">
+	</div>
+</div>

@@ -1,0 +1,172 @@
+<div id="main">
+	<h1>
+		{if $smarty.get.tipo eq "individual"}
+            Visualização individual
+        {/if}
+        
+        {if $smarty.get.tipo eq "clan"}
+            Visualização de clan
+        {/if}
+        &raquo; {$Viewer_Nome}
+	</h1>
+	<div class="content">
+		<div class="contents">
+			<div class="charview">
+				<div class="left">
+					<img src=""/>
+					<br/>
+				</div>
+				<div class="left">
+					<h2 style="color:gray;">
+						{$Viewer_Nome}
+					</h2>       
+				</div>
+                
+                    {if isset($smarty.get.tipo) && $smarty.get.tipo eq "clan"}
+                        <div style="margin-left: 185px; margin-top: 40px;">
+                            <img src="" width="92" height="92" />
+                        </div>
+                    <br />
+                    {/if}
+                
+				<div class="stats" style="clear:both;">
+					<br/>
+					<table>
+						<tr>
+                        {if $smarty.get.tipo eq "individual"}
+							<td class="type" style="text-align: center;" >
+								Matou
+							</td>
+                        {/if}
+                        
+                        {if $smarty.get.tipo eq "clan"}
+							<td class="type" style="text-align: center;" >
+								Vitórias
+							</td>
+                        {/if}
+							<td class="val"  style="text-align: center;" >
+								{$Viewer_Vitorias}
+							</td>
+							<td class="type" style="text-align: center;" >
+								Pais
+							</td>
+							<td class="val"  style="text-align: center;">
+								<img src="{$tpl}images/Brazil.png" title="Brasil"/>
+							</td>
+						</tr>
+						<tr>
+							{if $smarty.get.tipo eq "individual"}
+							     <td class="type" style="text-align: center;" >
+								    Morreu
+							     </td>
+                            {/if}
+                        
+                            {if $smarty.get.tipo eq "clan"}
+							     <td class="type" style="text-align: center;" >
+								    Derrotas
+							     </td>
+                            {/if}
+							<td class="val"  style="text-align: center;">
+								{$Viewer_Derrotas}
+							</td>
+                            
+                            {if $smarty.get.tipo eq "clan"}
+							<td class="type" style="text-align: center;" >
+								Percentual
+							</td>
+							<td class="val"  style="text-align: center;">
+								{$Viewer_Clan_Percentual} %
+							</td>
+                            {/if}
+						</tr>
+						<tr>
+                            {if $smarty.get.tipo eq "individual"}
+							<td class="type" style="text-align: center;" >
+								Sexo
+							</td>
+							<td class="val"  style="text-align: center;">
+								{$Viewer_Sexo}
+							</td>
+                            {/if}
+                            
+                            {if $smarty.get.tipo eq "clan"}
+							<td class="type" style="text-align: center;" >
+								Empates
+							</td>
+							<td class="val"  style="text-align: center;">
+								{$Viewer_Empates}
+							</td>
+                            {/if}
+                            
+							<td class="type" style="text-align: center;" >
+								Criado em
+							</td>
+							<td class="val"  style="text-align: center;">
+								{$Viewer_Criado}
+							</td>
+						</tr>
+						<tr>
+                            {if $smarty.get.tipo eq "individual"}
+							<td class="type" style="text-align: center;" >
+								Experiência
+							</td>
+                            {/if}
+                            
+                            {if $smarty.get.tipo eq "clan"}
+                            <td class="type" style="text-align: center;" >
+								Pontos
+							</td>
+                            {/if}
+							<td class="val"  style="text-align: center;">
+								{$Viewer_colocacao_by}
+							</td>
+                            
+                            {if $smarty.get.tipo eq "individual"}
+							<td class="type" style="text-align: center;" >
+								Último Login
+							</td>
+							<td class="val"  style="text-align: center;">
+								{$Viewer_UltimoLogin}
+							</td>
+                            {/if}
+						</tr>
+					</table>
+				</div>
+                {if isset( $smarty.get.tipo ) && $smarty.get.tipo eq "clan"}
+                    <div style="margin-left: 185px; margin-top: 20px;">
+                    <table>
+                        <tr>
+							<td style="text-align: center;" >
+								<b>Nome</b>
+							</td>
+                            <td style="text-align: center;" >
+								<b>Tipo</b>
+							</td> 
+                        </tr>
+                        
+                        {section name=membros loop=$Membros_Nome}
+                        <tr>
+							<td style="text-align: center;" >
+								<a href="index.php?url=viewer&tipo=individual&id={$Membros_IDS[membros]}">
+                                    
+                                    <font color='gray'>{$Membros_Nome[membros]}</font>
+                                    
+                                </a> 
+							</td>
+                            <td style="text-align: center;" >
+								{$Membros_Grade[membros]}
+							</td> 
+                        </tr>
+                        {/section}
+                                            
+                    </table>
+                    </div>
+                {/if}    
+			</div>
+			<br/>
+		</div>
+		<br/>
+	</div>
+	<div class="footer">
+	</div>
+</div>
